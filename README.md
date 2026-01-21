@@ -9,7 +9,7 @@
             color: transparent;
             display: inline-block;
         "
-    >TwinBrainVLA</span>
+    >BayesianVLA</span>
     <img src="./assets/TwinBrainVLA-logo.png" alt="logo" style="position: relative; top: -10px; margin-left: -2px; height: 40px;" />
     : Bayesian Decomposition of Vision Language Action Models via Latent Action Queries
 </h1>
