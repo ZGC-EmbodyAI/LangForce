@@ -42,9 +42,30 @@ Vision-Language-Action (VLA) models have shown promise in robot manipulation but
 
 ## 🏗️ Architecture
 
+**BayesianVLA** is a novel framework designed to solve the **Vision Shortcut** problem in Vision-Language-Action (VLA) models. 
+
 <div align="center">
   <img src="./assets/arch.png" alt="BayesianVLA Framework" width="100%">
-</div>
+</div
+
+In current VLA training, goal-driven datasets often make language instructions highly predictable from visual observations alone. This leads to **Information Collapse**, where the model ignores language and degenerates into a vision-only policy, failing miserably in out-of-distribution (OOD) scenarios.
+
+**BayesianVLA** addresses this by:
+1. **Bayesian Decomposition**: Explicitly modeling a vision-only prior $p(a|v)$ and a language-conditioned posterior $\pi(a|v, \ell)$.
+2. **LLR Optimization**: Maximizing the Log-Likelihood Ratio (LLR) to penalize actions that rely solely on visual cues and reward actions that are truly grounded in language instructions.
+
+## ✨ Key Features
+
+- **Dual-Branch Architecture**: Uses learnable **Latent Action Queries** to decouple vision-only and language-conditioned action distributions.
+- **Zero Extra Data**: Achieves significant performance gains (e.g., **+11.3%** on SimplerEnv) using the exact same datasets as baselines.
+- **Preserves VLM Intelligence**: Effectively regularizes the model to prevent the "catastrophic forgetting" of general multimodal reasoning capabilities common in standard VLA fine-tuning.
+
+## 📊 Performance
+
+| Method | SimplerEnv (Avg) | RoboCasa (Avg) |
+| :--- | :---: | :---: |
+| QwenGR00T (Baseline) | 55.2% | 47.8% |
+| **BayesianVLA (Ours)** | **66.5% (+11.3%)** | **50.4% (+2.6%)** |
 
 ## 🙏 Acknowledgements
 
