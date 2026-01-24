@@ -80,7 +80,7 @@ We would like to thank the [starVLA](https://github.com/starVLA/starVLA) project
 If you find this project or the dataset helpful, please cite:
 ```bibtex
 @misc{BayesianVLA_2026_arXiv,
-      title={BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries}, 
+      title={LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries}, 
       author={Shijie Lian and Bin Yu and Xiaopeng Lin and Laurence T. Yang and Zhaolong Shen and Changti Wu and Yuzhuo Miao and Cong Huang and Kai Chen},
       year={2026},
       eprint={2601.15197},
