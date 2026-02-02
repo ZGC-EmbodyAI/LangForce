@@ -109,7 +109,7 @@ class LangForce(baseframework):
 
         # ===== (3) Shortcut gate =====
         # gate computed from posterior language-span NLL: high NLL => log p(L|V) low => gate small
-        self.use_kl_gate = bool(self.config.framework.get("use_kl_gate", True))
+        self.use_kl_gate = bool(self.config.framework.get("use_kl_gate", False))
         self.kl_gate_momentum = float(self.config.framework.get("kl_gate_momentum", 0.99))
         self.kl_gate_temp = float(self.config.framework.get("kl_gate_temp", 0.5))
         self.kl_gate_tau_scale = float(self.config.framework.get("kl_gate_tau_scale", 0.7))  # scale EMA threshold
