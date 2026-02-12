@@ -1,12 +1,7 @@
 # Copyright 2025 starVLA community. All rights reserved.
 # Licensed under the MIT License, Version 1.0 (the "License");
-# Implemented by [Junqiu YU / Fudan University] in [2025].
-# Design and Merged by [Jinhui YE / HKUST University] in [2025].
 """
-Qwen-GR00T Framework
-Qwen-VL + Flow-matching head to directly predict continuous actions
-
-LangForceV5:
+LangForce:
 (1) Assert language span consistency between prior/post branches (token-level exact match)
 (2) Hard-token LLR + Shortcut gate
 (3) Optional detach of prior condition to avoid pushing backbone to vision-only shortcut
