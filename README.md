@@ -98,16 +98,6 @@ pip install flash-attn --no-build-isolation
 pip install -e .
 ```
 
-⚠️ **Common Issues**
-flash-attn can be tricky to install because it must match your system’s CUDA toolkit (nvcc) and PyTorch versions. The `--no-build-isolation` flag resolves most issues, but on newer systems you may need to manually choose a compatible flash-attn version. Ensure your CUDA driver/toolkit and torch versions are aligned. Check your environment:
-
-```bash
-nvcc -V
-pip list | grep -E 'torch|transformers|flash-attn'
-```
-
-If issues persist, pick a flash-attn release that matches your versions (CUDA and torch) or ask chatGPT with searching function for help with the outputs above.
-
 In particular, we list the versions of the relevant packages we used below:
 
 ```
