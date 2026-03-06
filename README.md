@@ -38,7 +38,7 @@
 
 ## 📢 News
 
-- [Feb 10, 2026] :zap: LangForce has been integrated into [starVLA](https://github.com/starVLA/starVLA). You can now directly train LangForce through starVLA and perform end-to-end training and evaluation on benchmarks such as LIBERO, SimplerEnv, and RoboCasa.
+- [Feb 10, 2026] :zap: LangForce has been integrated into [starVLA](https://github.com/starVLA/starVLA). You can now **directly train LangForce through starVLA** and perform end-to-end training and evaluation on benchmarks such as LIBERO, SimplerEnv, and RoboCasa.
 
 
 ## 📖 Abstract
@@ -74,7 +74,7 @@ In current VLA training, goal-driven datasets often make language instructions h
 
 ## 🚀 Training
 
-Our training pipeline is built upon the **StarVLA** framework. To get started, please follow the instructions below to set up the base environment.
+1. **Install starVLA **: Our training pipeline is built upon the **StarVLA** framework. To get started, please follow the instructions below to set up the base environment.
 
 <details close>
 <summary><b>🛠 starVLA Environment Setup
@@ -108,15 +108,20 @@ pip list | grep -E 'torch|transformers|flash-attn'
 
 If issues persist, pick a flash-attn release that matches your versions (CUDA and torch) or ask chatGPT with searching function for help with the outputs above.
 
-We have verified that `flash-attn==2.7.4.post1` works well with nvcc versions `12.0` and `12.4`.
+In particular, we list the versions of the relevant packages we used below:
 
+```
+torch==2.6.0+cu12.4
+flash-attention==2.7.4.post1
+## If using Qwen3.5 as the VLM
+flash-linear-attention==0.3.2
+causal_conv1d==1.5.0.post8
+```
 </details>
 
-**Train**
+2. **Vocabulary Expansion**: LangForce utilizes Qwen3-VL and extends the vocabulary with specialized tokens that serve as Latent Action Queries. Run the provided example script `add_token.py` to update the tokenizer with these additional tokens.
 
-1. **Vocabulary Expansion**: LangForce utilizes Qwen3-VL and extends the vocabulary with specialized tokens that serve as Latent Action Queries. Run the provided example script `add_token.py` to update the tokenizer with these additional tokens.
-
-2. **Training Script**: You can learn how to train LangForce using starVLA from [here]{https://github.com/starVLA/starVLA?tab=readme-ov-file#-quick-start}. Below, we provide a training script for LangForce on 8 × H100 GPUs:
+3. **Training Script**: You can learn how to train LangForce using starVLA from [here](https://github.com/starVLA/starVLA?tab=readme-ov-file#-quick-start). Below, we provide a training script for LangForce on 8 × H100 GPUs:
 
 ```bash
 conda activate starvla
