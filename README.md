@@ -74,7 +74,7 @@ In current VLA training, goal-driven datasets often make language instructions h
 
 ## 🚀 Training
 
-1. **Install starVLA **: Our training pipeline is built upon the **StarVLA** framework. To get started, please follow the instructions below to set up the base environment.
+1. **Install starVLA** : Our training pipeline is built upon the **StarVLA** framework. To get started, please follow the instructions below to set up the base environment.
 
 <details close>
 <summary><b>🛠 starVLA Environment Setup
