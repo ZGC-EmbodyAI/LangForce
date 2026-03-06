@@ -36,6 +36,11 @@
 
 ---
 
+## 📢 News
+
+- [Feb 10, 2026] :zap: LangForce has been integrated into [starVLA](https://github.com/starVLA/starVLA). You can now directly train LangForce through starVLA and perform end-to-end training and evaluation on benchmarks such as LIBERO, SimplerEnv, and RoboCasa.
+
+
 ## 📖 Abstract
 
 Vision-Language-Action (VLA) models have shown promise in robot manipulation but often struggle to generalize to new instructions or complex multi-task scenarios. We identify a critical pathology in current training paradigms where goal-driven data collection creates a dataset bias. In such datasets, language instructions are highly predictable from visual observations alone, causing the conditional mutual information between instructions and actions to vanish, a phenomenon we term `Information Collapse`. Consequently, models degenerate into vision-only policies that ignore language constraints and fail in out-of-distribution (OOD) settings. To address this, we propose **LangForce:**, a novel framework that enforces instruction following via Bayesian decomposition. By introducing learnable **Latent Action Queries**, we construct a dual-branch architecture to estimate both a vision-only prior $p(a \mid v)$ and a language-conditioned posterior $\pi(a \mid v, \ell)$. We then optimize the policy to maximize the conditional Pointwise Mutual Information (PMI) between actions and instructions. This objective effectively penalizes the vision shortcut and rewards actions that explicitly explain the language command. Without requiring new data, LangForce significantly improves generalization. Extensive experiments across on SimplerEnv and RoboCasa demonstrate substantial gains, including an **11.3\%** improvement on the challenging OOD SimplerEnv benchmark, validating the ability of our approach to robustly ground language in action.
@@ -107,10 +112,58 @@ We have verified that `flash-attn==2.7.4.post1` works well with nvcc versions `1
 
 </details>
 
-**Integration**
+**Train**
 
-1. **Register Framework**: Move `LangForce.py` into the starVLA/model/framework/ directory. This will automatically register LangForce as a supported framework within StarVLA.
-2. **Vocabulary Expansion**: LangForce utilizes Qwen3-VL and extends the vocabulary with specialized tokens that serve as Latent Action Queries. Run the provided example script `add_token.py` to update the tokenizer with these additional tokens.
+1. **Vocabulary Expansion**: LangForce utilizes Qwen3-VL and extends the vocabulary with specialized tokens that serve as Latent Action Queries. Run the provided example script `add_token.py` to update the tokenizer with these additional tokens.
+
+2. **Training Script**: You can learn how to train LangForce using starVLA from [here]{https://github.com/starVLA/starVLA?tab=readme-ov-file#-quick-start}. Below, we provide a training script for LangForce on 8 × H100 GPUs:
+
+```bash
+conda activate starvla
+cd /xxx/worlkplace/starVLA-v2.0
+
+export NCCL_SOCKET_IFNAME=eth0        
+export NCCL_IB_DISABLE=1       
+export NCCL_BLOCKING_WAIT=1
+export NCCL_ASYNC_ERROR_HANDLING=1
+export NCCL_TIMEOUT=1000  # timeout set to 1 hour (unit: seconds)
+
+framework_name=LangForceV5
+base_vlm=/xxx/starVLA-v2.0/playground/Pretrained_models/Qwen3-VL-4B-with-Action-Query
+run_id=GR00T_Simpler_LangForce
+freeze_module_list=''
+config_yaml=./examples/SimplerEnv/train_files/starvla_cotrain_oxe.yaml
+oxe_data_root=/xxx/starVLA/playground/Datasets/OXE_LEROBOT_DATASET/
+data_mix=bridge
+run_root_dir=./results/LangForce/SimplerEnv
+
+output_dir=${run_root_dir}/${run_id}
+mkdir -p ${output_dir}
+
+accelerate launch \
+  --config_file starVLA/config/deepseeds/deepspeed_zero2.yaml \
+  --num_processes 8 \
+  starVLA/training/train_starvla.py \
+  --config_yaml ${config_yaml} \
+  --framework.name ${framework_name} \
+  --framework.qwenvl.base_vlm ${base_vlm} \
+  --framework.qwenvl.template ${vlm_template} \
+  --framework.detach_prior_cond ${detach_prior_cond} \
+  --framework.qwenvl.num_latent_action_query ${num_latent_action_query} \
+  --framework.action_model.diffusion_model_cfg.num_layers ${dit_num_layers} \
+  --datasets.vla_data.data_root_dir ${oxe_data_root}\
+  --datasets.vla_data.data_mix ${data_mix} \
+  --datasets.vla_data.per_device_batch_size ${per_device_batch_size} \
+  --trainer.freeze_modules ${freeze_module_list} \
+  --trainer.max_train_steps 100000 \
+  --trainer.save_interval 10000 \
+  --trainer.logging_frequency 100 \
+  --trainer.eval_interval 1000 \
+  --run_root_dir ${run_root_dir} \
+  --run_id ${run_id} \
+  --wandb_project starVLA \
+  --wandb_entity xxx
+```
 
 > LangForce is currently under active development. Feel free to check back frequently for updates and new features!
 
