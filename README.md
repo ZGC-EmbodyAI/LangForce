@@ -72,6 +72,42 @@ In current VLA training, goal-driven datasets often make language instructions h
 | QwenGR00T (Baseline) | 55.2% | 47.8% | 96.5% | 
 | **LangForce (Ours)** | **66.5% (+11.3%)** | **52.6% (+4.8%)** | **98.4% (+1.9%)** |
 
+## 🤖 Real-World Deployment
+
+We evaluate LangForce on real-world robotic manipulation tasks using a Franka Research 3 robot arm. The robot is instructed to pick up different vegetables and place them into a brown basket. Below are demonstration videos showcasing LangForce's ability to follow language instructions accurately.
+
+### Task 1: Pick up the carrot and place it in the brown basket
+
+<p align="center">
+  <img src="./assets/carrot_1.gif" width="240" />
+  <img src="./assets/carrot_2.gif" width="240" />
+</p>
+<p align="center"><i>Instruction: "Pick up the carrot and place it in the brown basket"</i></p>
+
+### Task 2: Pick up the chili pepper and place it in the brown basket
+
+<p align="center">
+  <img src="./assets/chili_pepper_1.gif" width="400" />
+  <img src="./assets/chili_pepper_2.gif" width="400" />
+</p>
+<p align="center"><i>Instruction: "Pick up the chili pepper and place it in the brown basket"</i></p>
+
+### Task 3: Pick up the cucumber and place it in the brown basket
+
+<p align="center">
+  <img src="./assets/cucumber_1.gif" width="240" />
+  <img src="./assets/cucumber_2.gif" width="240" />
+</p>
+<p align="center"><i>Instruction: "Pick up the cucumber and place it in the brown basket"</i></p>
+
+### Task 4: Pick up the eggplant and place it in the brown basket
+
+<p align="center">
+  <img src="./assets/eggplant_1.gif" width="400" />
+  <img src="./assets/eggplant_2.gif" width="400" />
+</p>
+<p align="center"><i>Instruction: "Pick up the eggplant and place it in the brown basket"</i></p>
+
 ## 🚀 Training
 
 1. **Install starVLA** : Our training pipeline is built upon the **StarVLA** framework. To get started, please follow the instructions below to set up the base environment.
