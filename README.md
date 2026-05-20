@@ -212,15 +212,15 @@ We would like to thank the [starVLA](https://github.com/starVLA/starVLA) project
 ## Citation
 If you find this project or the dataset helpful, please cite:
 ```bibtex
-@misc{LangForce_2026_arXiv,
-      title={LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries}, 
-      author={Shijie Lian and Bin Yu and Xiaopeng Lin and Laurence T. Yang and Zhaolong Shen and Changti Wu and Yuzhuo Miao and Cong Huang and Kai Chen},
-      year={2026},
-      eprint={2601.15197},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2601.15197}, 
-}
+@inproceedings{LangForce_2026_ICML,
+    title     = {LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries},
+    author    = {Lian, Shijie and Yu, Bin and Lin, Xiaopeng and Yang, Laurence T. and Shen, Zhaolong and Wu, Changti and Miao, Yuzhuo and Huang, Cong and Chen, Kai},
+    booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
+    year      = {2026},
+    series    = {Proceedings of Machine Learning Research},
+    publisher = {PMLR},
+    url       = {https://arxiv.org/abs/2601.15197}
+  }
 ```
 
 ## Star History
