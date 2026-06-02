@@ -184,7 +184,7 @@ accelerate launch \
   --framework.detach_prior_cond ${detach_prior_cond} \
   --framework.qwenvl.num_latent_action_query ${num_latent_action_query} \
   --framework.action_model.diffusion_model_cfg.num_layers ${dit_num_layers} \
-  --datasets.vla_data.CoT_prompt "{instruction}"\
+  --datasets.vla_data.CoT_prompt='"{instruction}"' \
   --datasets.vla_data.data_root_dir ${oxe_data_root}\
   --datasets.vla_data.data_mix ${data_mix} \
   --datasets.vla_data.per_device_batch_size ${per_device_batch_size} \
@@ -206,7 +206,7 @@ accelerate launch \
 When training `LangForce`, please keep the VLA instruction prompt as the raw instruction:
 
 ```bash
-  --datasets.vla_data.CoT_prompt "{instruction}"
+  --datasets.vla_data.CoT_prompt='"{instruction}"' \
 ```
 
 LangForce internally constructs two branches:
