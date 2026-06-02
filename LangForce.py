@@ -6,7 +6,7 @@
 Qwen-GR00T Framework
 Qwen-VL + Flow-matching head to directly predict continuous actions
 
-LangForceV5:
+LangForce:
 (1) Assert language span consistency between prior/post branches (token-level exact match)
 (2) Hard-token LLR + Shortcut gate
 (3) Optional detach of prior condition to avoid pushing backbone to vision-only shortcut
