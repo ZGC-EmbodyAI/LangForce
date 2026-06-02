@@ -184,6 +184,7 @@ accelerate launch \
   --framework.detach_prior_cond ${detach_prior_cond} \
   --framework.qwenvl.num_latent_action_query ${num_latent_action_query} \
   --framework.action_model.diffusion_model_cfg.num_layers ${dit_num_layers} \
+  --datasets.vla_data.CoT_prompt "{instruction}"\
   --datasets.vla_data.data_root_dir ${oxe_data_root}\
   --datasets.vla_data.data_mix ${data_mix} \
   --datasets.vla_data.per_device_batch_size ${per_device_batch_size} \
@@ -199,6 +200,24 @@ accelerate launch \
 ```
 
 > LangForce is currently under active development. Feel free to check back frequently for updates and new features!
+
+### Important: LangForce Prompt Format
+
+When training `LangForce`, please keep the VLA instruction prompt as the raw instruction:
+
+```bash
+  --datasets.vla_data.CoT_prompt "{instruction}"
+```
+  LangForce internally constructs two branches:
+
+  prior:     <action_query_tokens> + instruction
+  posterior: instruction + <action_query_tokens>
+
+  The KL/LLR regularizer depends on extracting the same language span from both branches. If the prompt is wrapped, for example:
+
+  Your task is {instruction}.
+
+  the action-query tokens may be inserted inside the wrapper text, causing the language span extraction to fail. In that case kl_loss can silently become 0.0, meaning the KL/LLR regularizer is not actually participating in training.
 
 ## 🙏 Acknowledgements
 
