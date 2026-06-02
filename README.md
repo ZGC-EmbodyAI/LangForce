@@ -147,9 +147,7 @@ causal_conv1d==1.5.0.post8
 ```
 </details>
 
-2. **Vocabulary Expansion**: LangForce utilizes Qwen3-VL and extends the vocabulary with specialized tokens that serve as Latent Action Queries. Run the provided example script `add_token.py` to update the tokenizer with these additional tokens.
-
-3. **Training Script**: You can learn how to train LangForce using starVLA from [here](https://github.com/starVLA/starVLA?tab=readme-ov-file#-quick-start). Below, we provide a training script for LangForce on 8 × H100 GPUs:
+2. **Training Script**: You can learn how to train LangForce using starVLA from [here](https://github.com/starVLA/starVLA?tab=readme-ov-file#-quick-start). Below, we provide a training script for LangForce on 8 × H100 GPUs:
 
 ```bash
 conda activate starvla
@@ -206,7 +204,7 @@ accelerate launch \
 When training `LangForce`, please keep the VLA instruction prompt as the raw instruction:
 
 ```bash
-  --datasets.vla_data.CoT_prompt='"{instruction}"' \
+--datasets.vla_data.CoT_prompt='"{instruction}"' \
 ```
 
 LangForce internally constructs two branches:
