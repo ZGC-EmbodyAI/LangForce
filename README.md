@@ -151,7 +151,7 @@ causal_conv1d==1.5.0.post8
 
 ```bash
 conda activate starvla
-cd /xxx/worlkplace/starVLA-v2.0
+cd /xxx/worlkplace/starVLA
 
 export NCCL_SOCKET_IFNAME=eth0        
 export NCCL_IB_DISABLE=1       
@@ -159,12 +159,12 @@ export NCCL_BLOCKING_WAIT=1
 export NCCL_ASYNC_ERROR_HANDLING=1
 export NCCL_TIMEOUT=1000  # timeout set to 1 hour (unit: seconds)
 
-framework_name=LangForceV5
-base_vlm=/xxx/starVLA-v2.0/playground/Pretrained_models/Qwen3-VL-4B-with-Action-Query
+framework_name=LangForce
+base_vlm=/xxx/Qwen3-VL-4B
 run_id=GR00T_Simpler_LangForce
 freeze_module_list=''
 config_yaml=./examples/SimplerEnv/train_files/starvla_cotrain_oxe.yaml
-oxe_data_root=/xxx/starVLA/playground/Datasets/OXE_LEROBOT_DATASET/
+oxe_data_root=/xxx/OXE_LEROBOT_DATASET/
 data_mix=bridge
 run_root_dir=./results/LangForce/SimplerEnv
 
