@@ -208,16 +208,18 @@ When training `LangForce`, please keep the VLA instruction prompt as the raw ins
 ```bash
   --datasets.vla_data.CoT_prompt "{instruction}"
 ```
-  LangForce internally constructs two branches:
 
-  prior:     <action_query_tokens> + instruction
-  posterior: instruction + <action_query_tokens>
+LangForce internally constructs two branches:
 
-  The KL/LLR regularizer depends on extracting the same language span from both branches. If the prompt is wrapped, for example:
+**prior**:     `<action_query_tokens>` + instruction
 
-  Your task is {instruction}.
+**posterior**: instruction + `<action_query_tokens>`
 
-  the action-query tokens may be inserted inside the wrapper text, causing the language span extraction to fail. In that case kl_loss can silently become 0.0, meaning the KL/LLR regularizer is not actually participating in training.
+The KL/LLR regularizer depends on extracting the same language span from both branches. If the prompt is wrapped, for example: 
+
+`Your task is {instruction}.`
+
+The action-query tokens may be inserted inside the wrapper text, causing the language span extraction to fail. In that case kl_loss can silently become 0.0, meaning the KL/LLR regularizer is not actually participating in training.
 
 ## 🙏 Acknowledgements
 
