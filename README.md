@@ -52,7 +52,7 @@ Vision-Language-Action (VLA) models have shown promise in robot manipulation but
 **LangForce** is a novel framework designed to solve the **Vision Shortcut** problem in Vision-Language-Action (VLA) models. 
 
 <div align="center">
-  <img src="./assets/arch.png" alt="LangForce Framework" width="100%">
+  <img src="./assets/langforce_arch.png" alt="LangForce Framework" width="100%">
 </div
 
 In current VLA training, goal-driven datasets often make language instructions highly predictable from visual observations alone. This leads to **Information Collapse**, where the model ignores language and degenerates into a vision-only policy, failing miserably in out-of-distribution (OOD) scenarios.
