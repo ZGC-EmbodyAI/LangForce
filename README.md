@@ -104,6 +104,8 @@ LangForce achieves particularly strong performance across the Safety, Distractor
 
 The LangForce checkpoint used for this evaluation is publicly available on Hugging Face: **[LiamLian0727/LangForce_VLA_Arena](https://huggingface.co/LiamLian0727/LangForce_VLA_Arena)**
 
+> There is currently a minor bug in starVLA’s VLA-Arena evaluation. Please refer to PR [#430](https://github.com/starVLA/starVLA/pull/430) to reproduce LangForce’s performance on VLA-Arena.
+
 ## 🤖 Real-World Deployment
 
 We evaluate LangForce on real-world robotic manipulation tasks using a Franka Research 3 robot arm. The robot is instructed to pick up different vegetables and place them into a brown basket. Below are demonstration videos showcasing LangForce's ability to follow language instructions accurately.
