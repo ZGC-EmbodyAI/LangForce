@@ -38,7 +38,8 @@
 
 ## 📢 News
 
-- [May 13, 2026] :zap:  Thanks to Xinzhiyuan(新智元) for covering our work: [Wechat Article](https://mp.weixin.qq.com/s/czW-odrhMaCkBiQz841cTQ) / [Tencent News](https://news.qq.com/rain/a/20260513A04VKS00)
+- [Jul 28, 2026] :rocket: We have updated LangForce results on VLA-Arena, achieving average success rates of  84.2%, 38.8%, and 24.1% on L0–L2. Detailed results and model weights can be found on [this](https://huggingface.co/LiamLian0727/LangForce_VLA_Arena).
+- [May 13, 2026] :  Thanks to Xinzhiyuan(新智元) for covering our work: [Wechat Article](https://mp.weixin.qq.com/s/czW-odrhMaCkBiQz841cTQ) / [Tencent News](https://news.qq.com/rain/a/20260513A04VKS00)
 - [May 1, 2026]  :  [`LangForce`](https://icml.cc/virtual/2026/poster/65457) has been accepted to ICML 2026, and you can find our ckpt in [huggingface](https://huggingface.co/collections/LiamLian0727/langforce).
 - [Feb 10, 2026] : `LangForce` has been integrated into [starVLA](https://github.com/starVLA/starVLA). You can now **directly train LangForce through starVLA** and perform end-to-end training and evaluation on benchmarks such as LIBERO, SimplerEnv, and RoboCasa.
 
@@ -69,10 +70,39 @@ In current VLA training, goal-driven datasets often make language instructions h
 
 ## 📊 Performance
 
-| Method | SimplerEnv (Avg) | RoboCasa (Avg) | LIBERO (Avg) |
-| :--- | :---: | :---: | :---: |
-| QwenGR00T (Baseline) | 55.2% | 47.8% | 96.5% | 
-| **LangForce (Ours)** | **66.5% (+11.3%)** | **52.6% (+4.8%)** | **98.4% (+1.9%)** |
+| Method | SimplerEnv (Avg) | RoboCasa (Avg) | LIBERO (Avg) | VLA-Arena (L0 / L1 / L2 Avg)|
+| :--- | :---: | :---: | :---: | :---: |
+| QwenGR00T (Baseline) | 55.2% | 47.8% | 96.5% | 77.3% / 24.6% / 11.8% |
+| **LangForce (Ours)** | **66.5% (+11.3%)** | **52.6% (+4.8%)** | **98.4% (+1.9%)** | **84.2% (+6.9%) / 38.8% (+14.3%) / 24.1% (+12.3%)** |
+
+### LangForce on VLA-Arena
+
+We have updated the evaluation results of **LangForce** on the VLA-Arena benchmark. The evaluation covers all 170 tasks across difficulty levels L0–L2.
+
+Each cell reports results in the order **L0 / L1 / L2**. For each task and difficulty level, the **best**, <u>second-best</u>, and *third-best* results are highlighted. Higher SR is better, while lower CC is better.
+
+| Dimension | Task | Metric | π0.5 | GR00T-N1.6 | Qwen2.5-VL-OFT | Qwen3-VL-OFT | Qwen2.5-VL-GR00T | Qwen3-VL-GR00T | LangForce |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Safety | Static Obstacles | SR | <u>0.90</u> / <u>0.60</u> / <u>0.40</u> | 0.70 / *0.30* / *0.10* | 0.70 / 0.10 / 0.00 | *0.80* / 0.10 / *0.10* | <u>0.90</u> / *0.30* / *0.10* | <u>0.90</u> / 0.20 / 0.00 | **0.95** / **0.72** / **0.56** |
+| Safety | Static Obstacles | CC | **0.0** / 33.3 / 76.6 | **0.0** / *11.2* / 38.4 | **0.0** / 13.8 / <u>15.9</u> | **0.0** / 16.1 / **11.8** | **0.0** / **8.4** / *20.4* | **0.0** / <u>9.1</u> / 29.6 | **0.0** / 18.9 / 34.9 |
+| Safety | Cautious Grasp | SR | 0.50 / <u>0.10</u> / <u>0.00</u> | 0.20 / *0.00* / <u>0.00</u> | **1.00** / **0.20** / <u>0.00</u> | <u>0.90</u> / *0.00* / <u>0.00</u> | <u>0.90</u> / <u>0.10</u> / <u>0.00</u> | *0.80* / <u>0.10</u> / <u>0.00</u> | 0.75 / **0.20** / **0.07** |
+| Safety | Cautious Grasp | CC | 5.0 / **5.5** / **1.2** | 9.6 / 41.2 / *10.4* | *3.6* / 67.6 / <u>6.3</u> | 7.1 / *40.3* / <u>6.3</u> | *3.6* / 116.1 / 16.4 | <u>2.4</u> / 98.2 / 11.1 | **1.7** / <u>24.8</u> / 16.6 |
+| Safety | Hazard Avoidance | SR | *0.60* / **0.30** / **0.40** | *0.60* / 0.00 / *0.10* | 0.40 / *0.10* / 0.00 | 0.50 / *0.10* / 0.00 | *0.60* / *0.10* / *0.10* | <u>0.70</u> / *0.10* / <u>0.20</u> | **0.74** / <u>0.28</u> / **0.40** |
+| Safety | Hazard Avoidance | CC | 7.1 / <u>14.9</u> / <u>14.5</u> | <u>6.1</u> / 20.2 / *17.9* | 12.2 / 20.3 / 23.9 | 8.8 / 20.9 / 22.2 | 8.4 / 19.7 / 20.8 | *7.0* / *19.3* / 19.5 | **0.6** / **5.0** / **3.8** |
+| Safety | State Preservation | SR | 0.60 / <u>0.60</u> / **0.50** | *0.70* / *0.50* / <u>0.40</u> | <u>0.80</u> / 0.40 / <u>0.40</u> | **0.90** / 0.40 / 0.30 | **0.90** / *0.50* / <u>0.40</u> | **0.90** / <u>0.60</u> / **0.50** | **0.90** / **0.66** / *0.31* |
+| Safety | State Preservation | CC | **0.0** / 5.6 / 20.8 | **0.0** / *5.0* / 10.4 | **0.0** / **3.6** / *8.2* | **0.0** / <u>4.0</u> / <u>5.2</u> | **0.0** / *5.0* / 11.1 | **0.0** / 5.5 / 15.7 | **0.0** / **3.6** / **4.4** |
+| Safety | Dynamic Obstacles | SR | 0.50 / 0.40 / <u>0.20</u> | *0.70* / *0.50* / 0.00 | *0.70* / 0.30 / 0.00 | 0.60 / *0.50* / *0.10* | *0.70* / <u>0.60</u> / *0.10* | <u>0.80</u> / <u>0.60</u> / 0.00 | **0.91** / **0.68** / **0.36** |
+| Safety | Dynamic Obstacles | CC | <u>2.4</u> / 8.8 / 5.7 | 5.7 / <u>7.3</u> / 56.8 | *5.6* / **4.4** / **1.5** | *5.6* / 12.2 / 7.6 | 5.7 / 10.8 / <u>2.3</u> | 6.0 / *8.3* / *2.7* | **1.1** / 28.7 / 36.9 |
+| Distractor | Static Distractors | SR | <u>0.90</u> / *0.20* / **0.20** | 0.50 / **0.30** / <u>0.10</u> | <u>0.90</u> / 0.10 / 0.00 | *0.80* / 0.10 / 0.00 | <u>0.90</u> / *0.20* / <u>0.10</u> | <u>0.90</u> / 0.10 / 0.00 | **0.93** / <u>0.26</u> / *0.04* |
+| Distractor | Dynamic Distractors | SR | *0.80* / <u>0.70</u> / **0.50** | 0.70 / <u>0.70</u> / *0.20* | <u>0.90</u> / 0.40 / 0.00 | *0.80* / 0.50 / *0.20* | <u>0.90</u> / *0.60* / 0.10 | <u>0.90</u> / 0.50 / *0.20* | **0.91** / **0.72** / <u>0.45</u> |
+| Extrapolation | Preposition Combinations | SR | <u>0.60</u> / **0.20** / **0.10** | *0.50* / *0.00* / *0.00* | 0.40 / *0.00* / *0.00* | *0.50* / *0.00* / *0.00* | 0.40 / *0.00* / *0.00* | *0.50* / *0.00* / *0.00* | **0.75** / <u>0.03</u> / <u>0.02</u> |
+| Extrapolation | Task Workflows | SR | *0.40* / **0.20** / **0.20** | *0.40* / 0.00 / 0.00 | *0.40* / 0.00 / *0.10* | *0.40* / **0.20** / **0.20** | *0.40* / *0.10* / *0.10* | <u>0.50</u> / 0.00 / *0.10* | **0.63** / <u>0.11</u> / <u>0.19</u> |
+| Extrapolation | Unseen Objects | SR | *0.50* / <u>0.60</u> / *0.20* | 0.30 / 0.20 / *0.20* | 0.40 / 0.30 / 0.00 | <u>0.60</u> / 0.20 / 0.10 | <u>0.60</u> / *0.50* / *0.20* | <u>0.60</u> / *0.50* / **0.30** | **0.80** / **0.61** / <u>0.25</u> |
+| Long Horizon | Long Horizon | SR | *0.90* / **0.00** / **0.00** | 0.30 / **0.00** / **0.00** | *0.90* / **0.00** / **0.00** | **1.00** / **0.00** / **0.00** | **1.00** / **0.00** / **0.00** | **1.00** / **0.00** / **0.00** | <u>0.99</u> / **0.00** / **0.00** |
+
+LangForce achieves particularly strong performance across the Safety, Distractor, and Extrapolation dimensions, while maintaining a 0.99 success rate on Long Horizon L0.
+
+The LangForce checkpoint used for this evaluation is publicly available on Hugging Face: **[LiamLian0727/LangForce_VLA_Arena](https://huggingface.co/LiamLian0727/LangForce_VLA_Arena)**
 
 ## 🤖 Real-World Deployment
 
