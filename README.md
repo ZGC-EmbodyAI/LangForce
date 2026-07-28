@@ -104,7 +104,7 @@ LangForce achieves particularly strong performance across the Safety, Distractor
 
 The LangForce checkpoint used for this evaluation is publicly available on Hugging Face: **[LiamLian0727/LangForce_VLA_Arena](https://huggingface.co/LiamLian0727/LangForce_VLA_Arena)**
 
-> There is currently a minor bug in starVLA’s VLA-Arena evaluation. Please refer to PR [#430](https://github.com/starVLA/starVLA/pull/430) to reproduce LangForce’s performance on VLA-Arena.
+> :warning: There is currently a minor bug in starVLA’s VLA-Arena evaluation. Please refer to PR [#430](https://github.com/starVLA/starVLA/pull/430) to reproduce LangForce’s performance on VLA-Arena.
 
 ## 🤖 Real-World Deployment
 
