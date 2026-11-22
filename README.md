@@ -19,7 +19,7 @@
 <a href="https://www.alphaxiv.org/abs/2601.15197">
     <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2601.15197-b31b1b.svg">
 </a>
-<a href="https://github.com/ZGC-EmbodyAI/TwinBrainVLA/blob/main/LICENSE">
+<a href="https://github.com/ZGC-EmbodyAI/LangForce/blob/main/LICENSE">
     <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
 </a>
 
